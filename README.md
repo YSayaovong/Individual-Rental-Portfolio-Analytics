@@ -16,9 +16,9 @@ The project demonstrates an end-to-end analytics pipeline from raw data → clea
 - Python  
 - pandas, NumPy  
 - Matplotlib, Seaborn  
-- SQL (optional integration)  
+- SQL
 - Scikit-learn  
-- Power BI / Excel (optional dashboarding)  
+- Power BI / Excel  
 - Jupyter Notebook  
 
 ---
