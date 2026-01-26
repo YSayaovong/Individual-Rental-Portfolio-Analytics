@@ -1,33 +1,36 @@
 # Rental Portfolio Analytics Platform
 
-This project applies data analytics and machine learning techniques to forecast retail sales and generate KPI insights. It highlights skills in data preprocessing, exploratory analysis, feature engineering, and predictive modeling.
+This project applies data analytics, forecasting, and KPI engineering to analyze and project rental property performance. It highlights skills in ETL workflows, data preprocessing, financial modeling, exploratory analysis, and automated portfolio insights.
 
 ---
 
 ## Overview
 
-The project analyzes retail datasets to uncover trends, understand seasonality, generate key business performance indicators, and build forecasting models. It demonstrates end-to-end analytics workflow from raw data to actionable insights.
+The platform ingests rental, expense, and maintenance data across multiple properties and transforms it into actionable intelligence. It generates performance KPIs, forecasts cash flow and rent trends, evaluates ROI, and supports long-term decision-making for a real estate rental portfolio.
+The project demonstrates an end-to-end analytics pipeline from raw data → cleaned datasets → forecasting → KPI reporting.
 
 ---
 
 ## Tech Stack
 
 - Python  
-- Pandas, NumPy  
+- pandas, NumPy  
 - Matplotlib, Seaborn  
+- SQL (optional integration)  
 - Scikit-learn  
+- Power BI / Excel (optional dashboarding)  
 - Jupyter Notebook  
 
 ---
 
 ## Features
 
-- Data cleaning and preprocessing  
-- KPI generation (sales totals, growth, category performance, etc.)  
+- Automated ETL workflows for rental, expense, and maintenance data  
+- KPI generation (cash flow, ROI, expense ratios, occupancy impact, rent cycle metrics, etc.)  
 - Exploratory data analysis with visualizations  
-- Feature engineering for forecasting  
-- Machine learning forecasting models  
-- Evaluation metrics and model comparison  
+- Financial and operational trend analysis  
+- Forecasting for rent pricing, CAPEX planning, and portfolio performance  
+- Modular code structure allowing scalable data pipelines  
 
 ---
 
@@ -35,21 +38,23 @@ The project analyzes retail datasets to uncover trends, understand seasonality, 
 
 ```
 .
-├── data/                 # Raw and processed datasets
-├── notebooks/            # Jupyter notebooks for analysis
-├── models/               # Saved models (if included)
-├── visuals/              # Generated plots
-└── README.md             # Documentation
+├── data/                         # Raw and processed datasets
+├── notebooks/                    # Jupyter notebooks for ETL, EDA, KPIs, forecasting
+├── etl/                          # Data ingestion & cleaning workflows
+├── kpi_engine/                   # KPI calculations and financial metrics
+├── forecasting/                  # Predictive models & evaluation
+├── visuals/                      # Generated plots and charts
+└── README.md                     # Documentation
 ```
 
 ---
 
 ## Getting Started
 
-### 1. Clone repository
+### 1. Clone the repository
 ```bash
-git clone https://github.com/YSayaovong/retail-sales-forecasting-kpi-analytics.git
-cd retail-sales-forecasting-kpi-analytics
+git clone https://github.com/YSayaovong/PropTech-Analytics-Platform-ETL-Forecasting-KPI-Engine.git
+cd PropTech-Analytics-Platform-ETL-Forecasting-KPI-Engine
 ```
 
 ### 2. Install dependencies
@@ -66,10 +71,11 @@ jupyter notebook
 
 ## Potential Enhancements
 
-- Deploy forecasting model as an API  
-- Add dashboard for KPI visualization  
-- Integrate automated data pipelines  
-- Add hyperparameter tuning & advanced ML models  
+- Deploy forecasting and KPI engine as a REST API  
+- Add a Power BI or Streamlit dashboard for real-time visualization  
+- Integrate automated pipelines (Airflow/Prefect) for scheduled data updates  
+- Expand forecasting models to include seasonal decomposition and advanced ML  
+- Add anomaly detection for rent fluctuations or unusual expenses  
 
 ---
 
