@@ -1,84 +1,77 @@
-# Rental Portfolio Analytics Platform
-
-This project applies data analytics, forecasting, and KPI engineering to analyze and project rental property performance. It highlights skills in ETL workflows, data preprocessing, financial modeling, exploratory analysis, and automated portfolio insights.
+# Rental Portfolio Operations Analytics System
+### PostgreSQL Data Mart + Power BI Executive Dashboard + Python KPI Automation
 
 ---
 
 ## Overview
 
-The platform ingests rental, expense, and maintenance data across multiple properties and transforms it into actionable intelligence. It generates performance KPIs, forecasts cash flow and rent trends, evaluates ROI, and supports long-term decision-making for a real estate rental portfolio.
-The project demonstrates an end-to-end analytics pipeline from raw data → cleaned datasets → forecasting → KPI reporting.
+This project is an **operations analytics system** for rental portfolio performance. It models rental income, expenses, late payments, and CAPEX as a structured dataset, then converts that into decision-ready KPIs for:
+
+- **Collections & cash flow stability**
+- **NOI and margin discipline**
+- **Expense variance + root-cause drivers**
+- **CAPEX planning**
+- **Property-level performance benchmarking**
+
+The goal is the same as manufacturing ops analytics: **tight controls, fast visibility, and better decisions**.
+
+> Note: Data is anonymized / simulated to protect confidentiality while preserving real operational patterns.
+
+---
+
+## Business Context (Operations Lens)
+
+Rental portfolios fail when operators lose control of:
+- collections timing (late payments / delinquency)
+- expense variance (repairs, utilities, taxes, insurance)
+- CAPEX surprises (big-ticket maintenance)
+- property-level margin drift
+
+This system provides a repeatable analytics workflow to monitor performance and highlight risk early.
+
+---
+
+## What This System Delivers
+
+### Executive KPIs
+- Total Income, Total Expenses, **NOI**
+- **Cash Flow** (monthly / trailing)
+- Late Payment Rate (%), Delinquency Trend
+- Expense Variance vs Baseline
+- CAPEX Spend + Forecast Runway
+- Property Benchmark Rank (top/bottom performers)
+
+### Root Cause Analytics
+- Pareto of expense drivers
+- Variance decomposition (Property → Category → Vendor/Type)
+- Late payment drivers by property / tenant segment (if available)
 
 ---
 
 ## Tech Stack
 
-- Python  
-- pandas, NumPy  
-- Matplotlib, Seaborn  
-- SQL
-- Scikit-learn  
-- Power BI / Excel  
-- Jupyter Notebook  
+- **PostgreSQL**: data mart (facts + dimensions)
+- **Power BI**: executive reporting + drilldowns
+- **Python (pandas)**: data prep + KPI automation
 
 ---
 
-## Features
+## Data Model (Star Schema)
 
-- Automated ETL workflows for rental, expense, and maintenance data  
-- KPI generation (cash flow, ROI, expense ratios, occupancy impact, rent cycle metrics, etc.)  
-- Exploratory data analysis with visualizations  
-- Financial and operational trend analysis  
-- Forecasting for rent pricing, CAPEX planning, and portfolio performance  
-- Modular code structure allowing scalable data pipelines  
+### Fact Tables
+- `fact_transactions` (income/expense/capex events)
+- `fact_payments` (billing, paid date, late status)
 
----
+### Dimensions
+- `dim_property`
+- `dim_date`
+- `dim_category` (expense/income type)
+- `dim_vendor` (optional)
+- `dim_tenant` (optional)
 
-## Project Structure
-
-```
-.
-├── data/                         # Raw and processed datasets
-├── notebooks/                    # Jupyter notebooks for ETL, EDA, KPIs, forecasting
-├── etl/                          # Data ingestion & cleaning workflows
-├── kpi_engine/                   # KPI calculations and financial metrics
-├── forecasting/                  # Predictive models & evaluation
-├── visuals/                      # Generated plots and charts
-└── README.md                     # Documentation
-```
+This structure supports scalable KPI queries and clean Power BI relationships.
 
 ---
 
-## Getting Started
+## Repo Structure
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/YSayaovong/PropTech-Analytics-Platform-ETL-Forecasting-KPI-Engine.git
-cd PropTech-Analytics-Platform-ETL-Forecasting-KPI-Engine
-```
-
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Open notebooks
-```bash
-jupyter notebook
-```
-
----
-
-## Potential Enhancements
-
-- Deploy forecasting and KPI engine as a REST API  
-- Add a Power BI or Streamlit dashboard for real-time visualization  
-- Integrate automated pipelines (Airflow/Prefect) for scheduled data updates  
-- Expand forecasting models to include seasonal decomposition and advanced ML  
-- Add anomaly detection for rent fluctuations or unusual expenses  
-
----
-
-## License
-
-This project is open-source under the MIT License.
