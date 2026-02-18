@@ -1,5 +1,5 @@
 # Rental Portfolio Operations Analytics System
-### PostgreSQL Data Mart + Power BI Executive Dashboard + Python KPI Automation
+### PostgreSQL Data Mart + Power BI Executive Dashboard
 
 ---
 
