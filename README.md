@@ -1,84 +1,130 @@
-# Rental Portfolio Operations Analytics System
+# Rental Portfolio Operations Analytics — Corrected README
 
-SQL Data Mart • Power BI Dashboard • KPI Engine • Dockerized Postgres
+## 1. Overview
+This project models rental property operations using a full analytics pipeline:
+CSV → PostgreSQL (Docker) → SQL KPIs → Power BI Dashboard.
 
-A complete end-to-end Operations Analytics project built to mirror how a manufacturing/operations analyst designs, validates, and reports performance for recurring revenue operations.
+It simulates operational financial processes such as rent collection, expenses, on‑time payments, and tenant performance — all mapped to an operations‑analytics workflow.
 
-This system consolidates Expenses, Invoices, Payments, and Tenants into a clean SQL data mart, applies KPI logic, and feeds a Power BI model that surfaces margin, cash flow, variance, and payment-timeliness trends.
+---
 
-Even though the dataset is rental-based, the structure is identical to a manufacturing environment:
+## 2. Dashboard Preview
+*(Already in your GitHub; unchanged)*
 
-- Invoices → Shipments / Production Orders
-- Payments → Customer Cash Collections
-- Expenses → Operating Costs / Maintenance / Materials
-- Tenants → Customers / Accounts
+---
 
-## 1. Project Overview
+## 3. Install & Run
 
-This project demonstrates my ability to build an operational analytics system using:
+### Step 1 — Start Docker Environment
+```bash
+docker-compose up -d
+```
 
-- PostgreSQL (schema design, transformations, KPI views)
-- Power BI (DAX measures, semantic model, interactive reports)
-- Docker (reproducible data environment)
-- CSV operational datasets
-- Data modeling techniques used in manufacturing, logistics, finance, and operations teams
+### Database Credentials
+```
+Host: localhost
+Port: 5432
+Database: rental
+Username: rental_user
+Password: rental_pass
+```
 
-The system answers core operational questions:
+### Step 2 — Connect with pgAdmin
+Navigate to:  
+http://localhost:8080  
+Login using environment variables from docker-compose.
 
-- Are we profitable month over month?
-- Which categories drive cost variance?
-- Is our cash flow stable?
-- Who is consistently late on payments?
-- How do expenses compare across periods?
+---
 
-## 2. Architecture
+## 4. Dataset Schema
 
-CSV Data Sources → PostgreSQL (Dockerized) → Power BI Semantic Model → Executive Dashboard
+### tenants.csv
+| Column | Description |
+|--------|-------------|
+| tenant_id | Unique tenant |
+| tenant_name | Tenant full name |
+| property_id | Property rented |
 
-## 3. Dataset (CSV Layer)
+### invoices.csv
+| Column | Description |
+|--------|-------------|
+| invoice_id | Unique invoice |
+| tenant_id | Linked tenant |
+| amount | Amount billed |
+| due_date | Invoice due date |
 
-1. Expenses_Table.csv  
-2. Invoices_Table.csv  
-3. Payments_Table.csv  
-4. Tenants_Table.csv  
+### payments.csv
+| Column | Description |
+|--------|-------------|
+| payment_id | Payment record |
+| tenant_id | Linked tenant |
+| amount | Amount paid |
+| payment_date | Date of payment |
+| status | On‑time / Late |
 
-## 4. SQL Layer
+### expenses.csv
+| Column | Description |
+|--------|-------------|
+| expense_id | Expense record |
+| category | Insurance, maintenance, etc. |
+| amount | Cost amount |
+| expense_date | Date of expense |
 
-Includes schema creation, KPI views, payment timeliness logic, and monthly rollups.
+---
 
-## 5. Power BI Layer
+## 5. Example KPI SQL
 
-Includes:
-- DAX measures  
-- Date intelligence  
-- Revenue, expenses, payment trends  
-- Drilldowns by category and time  
+```sql
+SELECT
+    tenant_id,
+    SUM(amount) AS total_payments,
+    COUNT(*) FILTER (WHERE status = 'Late') AS late_payments
+FROM payments
+GROUP BY tenant_id;
+```
 
-### **Dashboard Preview**
-![Financial Dashboard](https://github.com/YSayaovong/rental-portfolio-operations-analytics/blob/main/assets/financial%20dashboard.PNG)
+---
 
-## 6. Docker Environment
+## 6. Clean Docker Compose (Fixed)
+```yaml
+version: "3.9"
 
-`docker-compose.yml` sets up a reproducible PostgreSQL environment for running all SQL files.
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: rental_pg
+    environment:
+      POSTGRES_DB: rental
+      POSTGRES_USER: rental_user
+      POSTGRES_PASSWORD: rental_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data:/data
 
-## 7. Key Insights (Examples)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: rental_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
-- Identified high variance in recurring expenses  
-- Detected late payment patterns using Days Late KPIs  
-- Stabilized month-to-month cash flow reporting with SQL views  
-- Built category-level cost visibility  
+volumes:
+  pgdata:
+```
 
-## 8. Interview Talking Points
+---
 
-- SQL data modeling for operations  
-- KPI definitions for performance management  
-- Power BI semantic modeling & DAX  
-- How rental data maps 1:1 to manufacturing/operations analytics  
+## 7. Tools Used
+- PostgreSQL
+- Docker
+- Power BI
+- SQL (analytics layer)
+- pgAdmin
 
-## 9. How to Run
-
-1. Load CSVs into Postgres  
-2. Run `postgres_build.sql`  
-3. Run `rental_financial_analytics.sql`  
-4. Open Power BI → Refresh model → Explore dashboards  
-
+---
