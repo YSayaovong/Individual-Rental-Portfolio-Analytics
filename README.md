@@ -65,7 +65,14 @@ docker-compose.yml sets up a reproducible PostgreSQL environment for running all
 - Stabilized month-to-month cash flow reporting with SQL views
 - Built category-level cost visibility
 
-## 8. How to Run
+## 8. Interview Talking Points
+
+- SQL data modeling for operations
+- KPI definitions for performance management
+- Power BI semantic modeling & DAX
+- How rental data maps 1:1 to manufacturing/operations analytics
+
+## 9. How to Run
 
 1. Load CSVs into Postgres
 2. Run postgres_build.sql

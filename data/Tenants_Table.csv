@@ -1,0 +1,6 @@
+tenant_id,name,lease_start_date,lease_end_date,status,family
+TEN001,Allison Hill,2010-04-01,2015-01-13,Past,Family with Kids
+TEN002,Noah Rhodes,2015-01-14,2018-05-06,Past,Family with Kids
+TEN003,Angie Henderson,2018-05-07,2021-05-30,Past,Family with Kids
+TEN004,Daniel Wagner,2021-05-31,2025-03-06,Past,Family with Kids
+TEN005,Cristian Santos,2025-03-07,,Current,Family without Kids
