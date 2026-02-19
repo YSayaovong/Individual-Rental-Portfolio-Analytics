@@ -1,183 +1,81 @@
-# Rental Portfolio Operations & Performance Analytics  
-### SQL Data Mart + Excel Controls + Power BI Executive Intelligence (Mock Dataset)
+# Rental Portfolio Operations Analytics System
 
----
+SQL Data Mart • Power BI Dashboard • KPI Engine • Dockerized Postgres
 
-## Overview
+A complete end-to-end Operations Analytics project built to mirror how a manufacturing/operations analyst designs, validates, and reports performance for recurring revenue operations.
 
-This project demonstrates an **operations analytics system** for rental portfolio performance using structured financial and transaction data.
+This system consolidates Expenses, Invoices, Payments, and Tenants into a clean SQL data mart, applies KPI logic, and feeds a Power BI model that surfaces margin, cash flow, variance, and payment-timeliness trends.
 
-It models rental income, expenses, collections activity, and capital expenditures to provide decision-ready KPIs that improve operational visibility and financial control.
+Even though the dataset is rental-based, the structure is identical to a manufacturing environment:
 
-All data is simulated or anonymized to protect confidentiality while reflecting realistic rental portfolio workflows.
+- Invoices → Shipments / Production Orders
+- Payments → Customer Cash Collections
+- Expenses → Operating Costs / Maintenance / Materials
+- Tenants → Customers / Accounts
 
----
+## 1. Project Overview
 
-## Business Context
+This project demonstrates my ability to build an operational analytics system using:
 
-Rental portfolios operate like small production systems. Financial stability depends on:
+- PostgreSQL (schema design, transformations, KPI views)
+- Power BI (DAX measures, semantic model, interactive reports)
+- Docker (reproducible data environment)
+- CSV operational datasets
+- Data modeling techniques used in manufacturing, logistics, finance, and operations teams
 
-- Consistent rent collection
-- Controlled operating expenses
-- Margin discipline (NOI stability)
-- Managed capital expenditures
-- Property-level performance benchmarking
+The system answers core operational questions:
 
-Without structured analytics, operators lose visibility into:
+- Are we profitable month over month?
+- Which categories drive cost variance?
+- Is our cash flow stable?
+- Who is consistently late on payments?
+- How do expenses compare across periods?
 
-- Expense spikes
-- Margin drift
-- Cash flow volatility
-- Delinquency risk
-- Underperforming properties
+## 2. Architecture
 
-This project simulates how an Operations Analyst would structure and monitor a rental portfolio using clean data modeling and executive KPI reporting.
+CSV Data Sources → PostgreSQL (Dockerized) → Power BI Semantic Model → Executive Dashboard
 
----
+## 3. Dataset (CSV Layer)
 
-## Project Objectives
+1. Expenses_Table.csv
+2. Invoices_Table.csv
+3. Payments_Table.csv
+4. Tenants_Table.csv
 
-- Track portfolio-level **NOI and cash flow trends**
-- Identify expense variance drivers
-- Monitor collection stability and payment timing
-- Benchmark property performance
-- Surface operational risk indicators
-- Provide executive-level decision visibility
+## 4. SQL Layer
 
----
+Includes schema creation, KPI views, payment timeliness logic, and monthly rollups.
 
-## Dataset Structure
+## 5. Power BI Layer
 
-The system models rental portfolio activity using structured operational tables.
+Includes:
+- DAX measures
+- Date intelligence
+- Revenue, expenses, payment trends
+- Drilldowns by category and time
 
-### 1️⃣ Transactions (Income / Expense / CAPEX)
+## 6. Docker Environment
 
-Tracks financial events across properties.
+docker-compose.yml sets up a reproducible PostgreSQL environment for running all SQL files.
 
-Key Fields:
-- Date
-- Property_ID
-- Category (Income / Expense / CAPEX)
-- Subcategory
-- Amount
-- Vendor (if applicable)
+## 7. Key Insights (Examples)
 
----
+- Identified high variance in recurring expenses
+- Detected late payment patterns using Days Late KPIs
+- Stabilized month-to-month cash flow reporting with SQL views
+- Built category-level cost visibility
 
-### 2️⃣ Payments / Collections (If Included)
+## 8. Interview Talking Points
 
-Tracks billing vs payment timing.
+- SQL data modeling for operations
+- KPI definitions for performance management
+- Power BI semantic modeling & DAX
+- How rental data maps 1:1 to manufacturing/operations analytics
 
-Key Fields:
-- Date_Billed
-- Date_Paid
-- Property_ID
-- Amount
-- Late_Flag
-- Days_Late
+## 9. How to Run
 
----
+1. Load CSVs into Postgres
+2. Run postgres_build.sql
+3. Run rental_financial_analytics.sql
+4. Open Power BI → Refresh model → Explore dashboards
 
-## Analytical KPIs
-
-The dashboard includes:
-
-- Total Income
-- Total Expenses
-- Net Operating Income (NOI)
-- Cash Flow (Monthly / Rolling)
-- Expense Variance by Category
-- CAPEX Tracking
-- Late Payment Rate (%)
-- Property Performance Ranking
-- Margin Stability Over Time
-
----
-
-## Core Analytical Questions Answered
-
-- Which properties generate the highest NOI?
-- What expense categories drive the most volatility?
-- Is cash flow stable month-over-month?
-- Where are late payments increasing?
-- Which properties are operationally high-risk?
-- How is CAPEX impacting margin performance?
-
----
-
-## Tools Used
-
-- SQL (PostgreSQL / MySQL)
-  - Structured schema
-  - KPI queries
-  - Aggregations & trend analysis
-- Microsoft Excel
-  - Data staging
-  - Validation checks
-  - Structured calculations
-- Power BI
-  - Executive dashboard
-  - Property drilldowns
-  - KPI visualization
-
----
-
-## Data Governance Features
-
-- Structured relational schema (facts + dimensions)
-- Controlled income/expense categorization
-- Standardized KPI definitions
-- Repeatable refresh workflow
-- Validation checks for duplicates and missing values
-
----
-
-## Why This Project Matters
-
-Operations analytics is not limited to manufacturing. Any system with recurring financial flows requires:
-
-- Margin discipline
-- Variance control
-- Cash flow monitoring
-- Risk detection
-- Structured decision support
-
-This project demonstrates:
-
-- Operations-focused thinking
-- Structured KPI modeling
-- Relational data design
-- Executive-level reporting
-
-It reflects how an Operations Analyst would manage performance, stability, and risk in a real-world portfolio environment.
-
----
-
-## Repository Structure
-
-```
-.
-├── Data/                 # Source datasets (CSV/Excel)
-├── SQL/                  # Schema, load scripts, KPI queries
-├── Excel/                # Data controls and validation workbook
-├── Dashboard/            # Power BI .pbix file + screenshots
-└── README.md
-```
-
----
-
-## Future Enhancements
-
-- Exception views in SQL for expense spikes
-- Variance decomposition modeling
-- Scenario simulation (rent increase, vacancy impact)
-- Rolling 90-day risk scoring logic
-- Automated KPI export workflows
-
----
-
-## Author
-
-Yengkong Sayaovong  
-Manufacturing & Operations Analytics Focus  
-LinkedIn: https://www.linkedin.com/in/ysayaovong
